@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from sklearn.base import BaseEstimator, TransformerMixin
 from itertools import tee
 
-class BaseForgetter(ABC, BaseEstimator, TransformerMixin):
+class BaseForgetter(ABC):
     
     def __init__(self, **_):
         pass
@@ -13,8 +13,10 @@ class BaseForgetter(ABC, BaseEstimator, TransformerMixin):
     
     def transform(self, X, compression_strategy, y=None):     
         mask = compression_strategy.get_compression_mask(self.predictions_over_time, self.y)
+        
         if y is None:
-            return X[mask]
+            return X[mask]        
+        
         else: return X[mask], y[mask]
     
     def get_mask(self, compression_strategy):
