@@ -8,7 +8,7 @@ class DropUnforgettableClassification(BaseCompressionStrategy):
     def __init__(self, limit_ratio=None, random_keeps=None, random_deletes=None):
         super().__init__(limit_ratio=limit_ratio, random_keeps=random_keeps, random_deletes=random_deletes)
         
-    def get_compression_mask(self, y_over_time, y):
+    def get_strategy_mask(self, y_over_time, y):
         y_initial = y_over_time[0]
         has_been_forgotten = np.zeros(len(y), dtype=bool) # by default none are forgotten, all to delete
         
@@ -34,7 +34,7 @@ class DropUnforgettableRegression(BaseCompressionStrategy):
         self.epsilon = epsilon # The Z score 
 
         
-    def get_compression_mask(self, y_over_time, y):
+    def get_strategy_mask(self, y_over_time, y):
         y_initial = y_over_time[0]
         
         has_been_forgotten = np.zeros(len(y), dtype=bool) # by default forget none
