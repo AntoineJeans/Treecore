@@ -16,4 +16,19 @@ class BaseCompressionStrategy:
     def get_strategy_mask(self, y_over_time, y):
         pass
     
+class ImplementsPointsByPriority(ABC):
+    @abstractmethod
+    def get_priorities(self):
+        pass
+    
+    def keep_highest_priority(self, n):
+        point_order = self.get_priorities()
+        n_points = len(point_order)
         
+        # if input n is a percentage (double), we keep that percentage of the dataset
+        if type(n) == float:
+            n = min(int(n*n_points), n_points)
+            
+        point_ids_to_keep = point_order[:n]
+        mask = [(i in point_ids_to_keep) for i in range(n_points)]       
+        return np.array(mask)

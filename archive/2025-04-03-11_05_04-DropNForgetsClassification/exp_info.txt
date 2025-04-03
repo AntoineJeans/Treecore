@@ -1,0 +1,14 @@
+date: 2025-04-03
+time: 11_05_04
+compression_strategy: DropNForgetsClassification
+forgetter: ABClassifierForgetter
+n_epochs: 100
+predictive_model: LogisticRegression
+metric: <function balanced_accuracy_score at 0x0000020E3F69C670>
+dataset_id: 40981
+dataset_name: Australian
+dataset_cardinality: 690
+dataset_training_cardinality: 552
+dataset_number_features: 6
+performance_on_whole_dataset: 0.7743636780554919
+Area_Between_curves: not done yet
